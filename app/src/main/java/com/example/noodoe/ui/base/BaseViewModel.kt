@@ -86,6 +86,7 @@ abstract class BaseViewModel(private val androidContext: Application) : ViewMode
         errorResult?.let {
             _errorResult.value = it
         }
+//        _errorResult.value = response.errorBody()?.charStream().toString() //TODO: different error result handle
     }
 
     private fun doOnException(context: Context, exception: Exception) {

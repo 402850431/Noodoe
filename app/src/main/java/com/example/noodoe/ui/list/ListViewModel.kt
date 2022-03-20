@@ -55,7 +55,7 @@ class ListViewModel(
             val dateTime = "${selectDate}T${selectTime}:00.000Z"
                 viewModelScope.launch {
                     doNetwork {
-                        ServiceConstants.listApiService.setUserTimeZone(objectId, UserTimeRequest(dateTime))
+                        ServiceConstants.userApiService.setUserTimeZone(objectId, UserTimeRequest(dateTime))
                     }.let {
                         it?.let {
                             _userTimeResult.value = it
