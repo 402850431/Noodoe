@@ -13,10 +13,9 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import kotlin.reflect.KClass
 
 @SuppressLint("InflateParams")
-abstract class BaseFragment<VM : ViewModel>() : Fragment() {
+abstract class BaseFragment<VM : ViewModel>()  : Fragment() {
 
-//    val viewModel: VM by sharedViewModel<VM>()
-    protected abstract val sharedViewModel: VM
+    protected abstract val viewModel: VM
 
     open fun loading() {
         if (activity is BaseActivity<*>)

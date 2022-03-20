@@ -1,30 +1,32 @@
 package com.example.noodoe.ui.login
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.noodoe.network.login.LoginApi
-import com.example.noodoe.network.login.data.LoginRequest
-import com.example.noodoe.network.login.data.LoginResult
+import com.example.noodoe.network.consts.ServiceConstants
+import com.example.noodoe.network.api.login.data.LoginRequest
+import com.example.noodoe.network.api.login.data.LoginResult
+import com.example.noodoe.repository.LoginRepository
 import com.example.noodoe.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
-class LoginViewModel(androidContext: Application) : BaseViewModel(androidContext) {
+class LoginViewModel(androidContext: Application, private val loginRepository: LoginRepository) : BaseViewModel(androidContext) {
 
-    val loginResult: LiveData<LoginResult>
+    val loginResult: LiveData<LoginResult?>
         get() = _loginResult
-    private val _loginResult = MutableLiveData<LoginResult>()
+    private val _loginResult = MutableLiveData<LoginResult?>()
 
     fun login(userName: String, password: String) {
         viewModelScope.launch {
             doNetwork {
-                Log.e(">>>", "userName = $userName, password = $password")
-                LoginApi.loginApiService.login(LoginRequest(userName, password))
+                ServiceConstants.loginApiService.login(LoginRequest(userName, password))
             }.let {
-                Log.e(">>>", "result = $it")
                 _loginResult.value = it
+                //save token to repository
+                it?.apply {
+                    loginRepository.login(it)
+                }
             }
         }
     }

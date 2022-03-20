@@ -8,4 +8,9 @@
     <string name="message_network_not_connect">network not connect</string>
     <string name="message_network_timeout">network timeout</string>
     <string name="ok">ok</string>
+    <string name="footer">footer</string>
+    <string name="header">header</string>
+    <string name="no_data">no data</string>
+    <string name="news_list">News List</string>
+    <string name="time_zone">Time Zone</string>
 </resources>

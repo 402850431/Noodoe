@@ -2,7 +2,9 @@ package com.example.noodoe.network.consts
 
 object Constants {
 
-    const val BASE_URL = "https://watch-master-staging.herokuapp.com"
+    var BASE_URL = "https://watch-master-staging.herokuapp.com"
+    const val HOME_BASE_URL = "https://tcgbusfs.blob.core.windows.net"
+    const val NEWS_URL = "/dotapp/news.json"
     const val LOGIN_URL = "/api/login"
 
     //timeout

@@ -2,18 +2,19 @@ package com.example.noodoe.ui.base
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import androidx.annotation.Nullable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.noodoe.R
+import com.example.noodoe.network.api.BaseResult
+import com.example.noodoe.network.api.list.data.ListInfoResult
 import com.example.noodoe.network.consts.ErrorUtils
 import com.example.noodoe.network.consts.NetworkUtil
 import com.example.noodoe.network.exception.NoConnectionException
+import com.example.noodoe.network.api.login.data.ErrorResult
 import kotlinx.coroutines.async
-import org.koin.core.component.KoinComponent
 import retrofit2.Response
 import timber.log.Timber
 import java.net.SocketTimeoutException
@@ -33,13 +34,17 @@ abstract class BaseViewModel(private val androidContext: Application) : ViewMode
     private val _networkExceptionUnavailable = MutableLiveData<String>()
     private val _networkExceptionTimeout = MutableLiveData<String>()
     private val _networkExceptionUnknown = MutableLiveData<String>()
+    private val _errorResult = MutableLiveData<ErrorResult>()
+
+    val errorResult: LiveData<ErrorResult>
+        get() = _errorResult
 
     val apiStatus: LiveData<ApiStatus>
         get() = _apiStatus
     private val _apiStatus = MutableLiveData<ApiStatus>()
 
     @Nullable
-    suspend fun <T> doNetwork(
+    suspend fun <T: BaseResult> doNetwork(
         exceptionHandle: Boolean = true,
         apiFun: suspend () -> Response<T>
     ): T? {
@@ -60,23 +65,28 @@ abstract class BaseViewModel(private val androidContext: Application) : ViewMode
         }
     }
 
-    private suspend fun <T> doApiFun(apiFun: suspend () -> Response<T>): T? {
+    private suspend fun <T: BaseResult> doApiFun(apiFun: suspend () -> Response<T>): T? {
         val apiResult = viewModelScope.async {
             val response = apiFun()
             Timber.e("response.isSuccessful = ${response.isSuccessful}, response.body() = ${response.body().toString()}")
             when (response.isSuccessful) {
                 true -> return@async response.body()
-                false -> return@async doResponseError(response)
+                false -> {
+                    doResponseError(response)
+                    return@async null
+                }
             }
         }
         return apiResult.await()
     }
 
-    private fun <T> doResponseError(response: Response<T>): T? {
+    private fun <T: BaseResult> doResponseError(response: Response<T>) {
         Timber.e("responseError = ${response.errorBody()?.charStream()}")
-        return ErrorUtils.parseError(response)
+        val errorResult = ErrorUtils.parseError(response)
+        errorResult?.let {
+            _errorResult.value = it
+        }
     }
-
 
     private fun doOnException(context: Context, exception: Exception) {
         when (exception) {

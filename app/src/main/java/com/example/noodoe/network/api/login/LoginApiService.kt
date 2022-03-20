@@ -1,8 +1,8 @@
-package com.example.noodoe.network.login
+package com.example.noodoe.network.api.login
 
 import com.example.noodoe.network.consts.Constants.LOGIN_URL
-import com.example.noodoe.network.login.data.LoginRequest
-import com.example.noodoe.network.login.data.LoginResult
+import com.example.noodoe.network.api.login.data.LoginRequest
+import com.example.noodoe.network.api.login.data.LoginResult
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -12,5 +12,4 @@ interface LoginApiService {
     suspend fun login(
         @Body loginRequest: LoginRequest
     ): Response<LoginResult>
-
 }

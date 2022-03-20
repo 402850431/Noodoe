@@ -2,6 +2,9 @@ package com.example.noodoe
 
 import android.app.Application
 import android.content.Context
+import com.example.noodoe.db.MyRoomDatabase
+import com.example.noodoe.repository.LoginRepository
+import com.example.noodoe.ui.list.ListViewModel
 import com.example.noodoe.ui.login.LoginViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -25,13 +28,20 @@ class MyApplication : Application() {
     }
 
     private val viewModelModule = module {
-        viewModel { LoginViewModel(get()) }
+        viewModel { LoginViewModel(get(), get()) }
+        viewModel { ListViewModel(get(), get()) }
     }
 
     private val repoModule = module {
+        single { LoginRepository(get(), get()) }
     }
 
     private val serviceModule = module {
+    }
+
+    private val dbModule = module {
+        single { MyRoomDatabase.getDatabase(get()) }
+        single { get<MyRoomDatabase>().userInfoDao() }
     }
 
     override fun onCreate() {
@@ -42,7 +52,7 @@ class MyApplication : Application() {
         startKoin {
             androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@MyApplication)
-            modules(viewModelModule)
+            modules(listOf(viewModelModule, repoModule, dbModule))
         }
     }
 

@@ -1,6 +1,7 @@
-package com.example.noodoe.network.login.data
+package com.example.noodoe.network.api.login.data
 
 
+import com.example.noodoe.network.api.BaseResult
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -36,4 +37,4 @@ data class LoginResult(
     val updatedAt: String,
     @Json(name = "username")
     val username: String
-)
+): BaseResult()

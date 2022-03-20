@@ -92,16 +92,17 @@ class LoginEditText @JvmOverloads constructor(context: Context, attrs: Attribute
             val itemMarginBottom: Int = typedArray.getDimensionPixelOffset(R.styleable.LoginEditTextStyle_mMarginBottom, 10)
             setMarginBottom(itemMarginBottom)
 
+            setupFocus()
+            setupEye()
+            setupEditTextClearListener()
+            setError(null)
+            setupKeyBoardPressDown()
+
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {
             typedArray.recycle()
         }
-//        setupFocus()
-//        setupEye()
-//        setupEditTextClearListener()
-//        setError(null)
-//        setupKeyBoardPressDown()
 
     }
 

@@ -1,4 +1,4 @@
-package com.example.noodoe.network.login.data
+package com.example.noodoe.network.api.login.data
 
 
 import com.squareup.moshi.Json
