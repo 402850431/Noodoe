@@ -20,6 +20,10 @@ data class UserInfo(
     @ColumnInfo(name = "reportEmail")
     var reportEmail: String? = null,
 
+    @ColumnInfo(name = "updatedAt")
+    val updatedAt: String,
+
     @Json(name = "sessionToken")
     val sessionToken: String
+
 )

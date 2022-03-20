@@ -51,10 +51,8 @@ class ListFragment : BaseFragment<ListViewModel>() {
     private fun initObserver() {
         viewModel.listResultList.observe(viewLifecycleOwner) {
             it?.let {
-                Log.e(">>>", "it = ${it.size}")
                 newsListAdapter.addFooterAndSubmitList(it)
             }
-//            Log.e(">>>", "it = ${it.observe()}")
         }
     }
 

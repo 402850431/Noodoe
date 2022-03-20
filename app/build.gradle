@@ -83,6 +83,9 @@ dependencies {
     //timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
+    //live data
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
+
     //room
     implementation "androidx.room:room-runtime:$version_room"
     implementation "androidx.room:room-ktx:$version_room"

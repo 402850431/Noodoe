@@ -3,6 +3,7 @@ package com.example.noodoe
 import android.app.Application
 import android.content.Context
 import com.example.noodoe.db.MyRoomDatabase
+import com.example.noodoe.network.manager.ApiRequestManager
 import com.example.noodoe.repository.LoginRepository
 import com.example.noodoe.ui.list.ListViewModel
 import com.example.noodoe.ui.login.LoginViewModel
@@ -54,6 +55,7 @@ class MyApplication : Application() {
             androidContext(this@MyApplication)
             modules(listOf(viewModelModule, repoModule, dbModule))
         }
+        ApiRequestManager.init(this)
     }
 
 }

@@ -13,7 +13,7 @@ object ErrorUtils {
     @Nullable
     fun <T> parseError(response: Response<T>): ErrorResult? {
 
-        val converter: Converter<ResponseBody, ErrorResult> = ApiRequestManager.retrofit
+        val converter: Converter<ResponseBody, ErrorResult> = ApiRequestManager.instance.retrofit
             .responseBodyConverter(ErrorResult::class.java, arrayOfNulls<Annotation>(0))
 
         var error: ErrorResult? = null

@@ -1,22 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     android:background="@color/light_gray"
-    tools:context=".ui.list.ListFragment">
+    tools:context=".ui.list.user.UpdateUserFragment">
 
-    <ImageView
-        android:id="@+id/iv_back"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_arrow_back"
-        android:paddingHorizontal="20dp"
+        android:textSize="12sp"
+        android:text="email"/>
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp"
+        android:textStyle="bold"
+        android:background="@color/light_blue"
         android:paddingVertical="10dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        android:paddingHorizontal="40dp"
+        tools:text="time picker"/>
 
+<!--    <Spinner-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textSize="12sp"-->
+<!--        android:gravity="center_vertical"/>-->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

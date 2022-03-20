@@ -2,6 +2,7 @@ package com.example.noodoe.repository
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.example.noodoe.db.dao.UserInfoDao
 import com.example.noodoe.db.entity.UserInfo
 import com.example.noodoe.network.api.login.data.LoginResult
@@ -11,6 +12,8 @@ import kotlinx.coroutines.withContext
 
 const val NAME_LOGIN = "login"
 const val KEY_TOKEN = "token"
+const val KEY_UPDATE_TIME = "updatedAt"
+const val KEY_REPORT_EMAIL = "reportEmail"
 const val KEY_OBJECT_ID = "objectId"
 
 class LoginRepository(private val androidContext: Context, private val userInfoDao: UserInfoDao) {
@@ -31,13 +34,43 @@ class LoginRepository(private val androidContext: Context, private val userInfoD
             }
         }
 
+    var reportEmail
+        get() = sharedPref.getString(KEY_REPORT_EMAIL, "")
+        set(value) {
+            with(sharedPref.edit()) {
+                putString(KEY_REPORT_EMAIL, value)
+                apply()
+            }
+        }
+
+    var updatedAt
+        get() = sharedPref.getString(KEY_UPDATE_TIME, "")
+        set(value) {
+            with(sharedPref.edit()) {
+                putString(KEY_UPDATE_TIME, value)
+                apply()
+            }
+        }
+
+    var objectId
+        get() = sharedPref.getString(KEY_OBJECT_ID, "")
+        set(value) {
+            with(sharedPref.edit()) {
+                putString(KEY_OBJECT_ID, value)
+                apply()
+            }
+        }
+
 
     suspend fun login(loginResult: LoginResult) {
         token?.let { this.token = loginResult.sessionToken }
+        reportEmail?.let { this.reportEmail = loginResult.reportEmail }
+        updatedAt?.let { this.updatedAt = loginResult.updatedAt }
+        objectId?.let { this.objectId = loginResult.objectId }
         isLogin = true
 
         withContext(Dispatchers.IO) {
-            userInfoDao.update(transform(loginResult))
+            userInfoDao.upsert(transform(loginResult))
         }
     }
 
@@ -61,6 +94,7 @@ class LoginRepository(private val androidContext: Context, private val userInfoD
             loginData.objectId,
             username = loginData.username,
             reportEmail = loginData.reportEmail,
+            updatedAt = loginData.updatedAt,
             sessionToken = loginData.sessionToken
         )
 
