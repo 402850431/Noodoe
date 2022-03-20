@@ -7,9 +7,8 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.noodoe.ui.LoginFragment"
-        android:label="LoginFragment"
-        tools:layout="@layout/fragment_login">
+        android:name="com.example.noodoe.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
 
-    </fragment>
 </navigation>

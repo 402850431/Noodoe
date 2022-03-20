@@ -44,7 +44,6 @@ android {
 ext {
     version_retrofit = "2.9.0"
     version_navigation = "1.0.0"
-    koin_version= "3.2.0-beta-1"
 }
 
 dependencies {
@@ -71,6 +70,7 @@ dependencies {
     //koin
     implementation "io.insert-koin:koin-core:$koin_version"
     implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-androidx-compose:$koin_version"
 
     // Navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:$version_navigation"
@@ -81,4 +81,6 @@ dependencies {
 
     //timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    implementation 'androidx.fragment:fragment-ktx:1.5.0-alpha03'
 }

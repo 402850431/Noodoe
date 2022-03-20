@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="com.example.noodoe.ui.custom.LoginEditText">
+
+    <LinearLayout
+        android:id="@+id/block_editText"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:autoSizeMaxTextSize="13dp"
+            app:autoSizeMinTextSize="6dp"
+            app:autoSizeTextType="uniform"
+            tools:text="@string/account" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:background="@android:color/darker_gray" />
+
+        <EditText
+            android:id="@+id/et_input"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:autofillHints="no"
+            android:background="@null"
+            android:ellipsize="end"
+            android:inputType="text"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textColor="@android:color/darker_gray"
+            android:textColorHint="@android:color/darker_gray"
+            android:textSize="12sp"
+            app:autoSizeMaxTextSize="12sp"
+            app:autoSizeMinTextSize="8sp"
+            tools:hint="@string/please_input_account" />
+
+        <ImageView
+            android:id="@+id/btn_clear"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@null"
+            android:gravity="center"
+            android:padding="6dp"
+            android:src="@drawable/ic_clear"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/btn_eye"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:gravity="center"
+            tools:visibility="visible"
+            android:visibility="gone">
+
+            <CheckBox
+                android:id="@+id/cb_eye"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/selector_image_eye"
+                android:clickable="false" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="4dp"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="12sp"
+        android:visibility="gone"
+        android:paddingHorizontal="10dp"
+        app:drawableStartCompat="@drawable/ic_warning"
+        app:drawableTint="@android:color/holo_red_dark"
+        app:layout_constraintEnd_toEndOf="@id/block_editText"
+        app:layout_constraintStart_toStartOf="@id/block_editText"
+        app:layout_constraintTop_toBottomOf="@id/block_editText"
+        tools:text="@string/please_input_account"
+        tools:visibility="visible" />
+
+</LinearLayout>

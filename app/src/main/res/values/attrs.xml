@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="LoginEditTextStyle">
+        <attr name="mTitleText" format="string" />
+        <attr name="mMarginBottom" format="dimension" />
+        <attr name="mEnable" format="boolean" />
+        <attr name="mEditable" format="boolean" />
+        <attr name="mCount" format="string" />
+        <attr name="mHint" format="string" />
+        <attr name="mText" format="string" />
+        <attr name="mEms" format="integer" />
+        <attr name="mInputType">
+            <flag name="text" value="1" />
+            <flag name="textPassword" value="128" />
+        </attr>
+    </declare-styleable>
+
+</resources>

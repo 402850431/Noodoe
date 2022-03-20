@@ -1,14 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.LoginFragment">
+    android:background="@color/light_gray"
+    android:paddingHorizontal="40dp"
+    tools:context=".ui.login.LoginFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+        <com.example.noodoe.ui.custom.LoginEditText
+            android:id="@+id/et_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/et_password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:mHint="@string/please_input_account"
+            app:mInputType="text"
+            app:mText="test2@qq"
+            app:mTitleText="@string/account" />
+
+
+        <com.example.noodoe.ui.custom.LoginEditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_login"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_account"
+            app:layout_constraintVertical_bias="0"
+            app:mHint="@string/please_input_password"
+            app:mInputType="text"
+            app:mText="test1234qq"
+            app:mTitleText="@string/password" />
+
+<!--    <EditText-->
+<!--        android:id="@+id/et_account"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/et_password"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_chainStyle="packed"-->
+<!--        android:hint="@string/please_input_account"-->
+<!--        android:inputType="text"-->
+<!--        android:text="test2@qq"/>-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/et_password"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="4dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/btn_login"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/et_account"-->
+<!--        app:layout_constraintVertical_bias="0"-->
+<!--        android:hint="@string/please_input_password"-->
+<!--        android:inputType="text"-->
+<!--        android:text="test1234qq" />-->
+
+    <Button
+        android:id="@+id/btn_login"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/et_password"
+        app:layout_constraintTop_toBottomOf="@id/et_password" />
 
-</FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@
 buildscript {
     ext {
         version_android_gradle_plugin = "4.0.1"
+        koin_version = '3.1.5'
         nav_version = "2.4.1"
     }
     repositories {
@@ -17,7 +18,6 @@ buildscript {
 plugins {
     id 'com.android.application' version '7.1.0-beta03' apply false
     id 'com.android.library' version '7.1.0-beta03' apply false
-    id 'org.jetbrains.kotlin.android' version '1.5.30' apply false
 }
 
 task clean(type: Delete) {
